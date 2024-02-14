@@ -26,12 +26,18 @@ function saveTextToFile() {
 
     const blob = new Blob([textToSave], {type: 'text/plain;charset=utf8'});
     const url = URL.createObjectURL(blob);
+    let fileName = document.getElementById("page-text").value
+    if(fileName.length > 5) {
+        fileName = fileName.substring(0,5) };
 
     chrome.downloads.download({
-        url: url,
-        filename: "saved_text.txt",
+        url: url, 
+        filename: fileName,
         saveAs: true
     });
 
+    
+
     URL.revokeObjectURL(url);
 }
+
