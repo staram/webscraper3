@@ -10,6 +10,7 @@ window.addEventListener("load", function(e) {
 chrome.runtime.onMessage.addListener(function (message) {
     document.getElementById('page-url').value = message.messageURL;
 	document.getElementById('page-title').value = message.messageTitle;
+	document.getElementById('page-text').value = "Title: " + message.messageTitle + "\n";
 });
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -26,13 +27,14 @@ function saveTextToFile() {
 
     const blob = new Blob([textToSave], {type: 'text/plain;charset=utf8'});
     const url = URL.createObjectURL(blob);
-    let fileName = document.getElementById("page-text").value
-    if(fileName.length > 5) {
-        fileName = fileName.substring(0,5) };
+    let fileName = document.getElementById('page-title').value;
+
+    if(fileName.length > 30) {
+        fileName = fileName.substring(0,30) };
 
     chrome.downloads.download({
         url: url, 
-        filename: fileName,
+        filename: fileName + ".txt",
         saveAs: true
     });
 
