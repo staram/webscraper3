@@ -1,0 +1,21 @@
+{
+    "manifest_version": 3,
+    "name": "Save Text Extension",
+    "description": "experimental",
+    "version": "1.0",
+    "author": "KR",
+
+	"background": {
+		"service_worker": "popup.js",
+		"type": "module"
+	  },
+    "permissions": [
+        "downloads",
+        "tabs"
+    ],
+	"host_permissions": [
+        "*://*/*"
+    ],
+    "action": {
+    }
+}
